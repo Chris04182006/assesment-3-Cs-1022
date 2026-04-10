@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Science, AI, Digital Marketing, and Ethics</title>
+  <style>
+    :root {
+      --bg: #081120;
+      --panel: #101b32;
+      --panel2: #172544;
+      --text: #eef4ff;
+      --muted: #c9d4ea;
+      --accent: #7dd3fc;
+      --accent2: #a78bfa;
+      --good: #86efac;
+      --warn: #fcd34d;
+      --bad: #fca5a5;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #081120 0%, #0f1b34 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    header {
+      padding: 4rem 1.4rem 2.5rem;
+      text-align: center;
+      background:
+        radial-gradient(circle at top left, rgba(125,211,252,0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(167,139,250,0.16), transparent 30%);
+    }
+
+    .hero {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(125,211,252,0.14);
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.12;
+      margin: 1rem 0 0.8rem;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(8, 17, 32, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.4rem 1.1rem 4rem;
+    }
+
+    section {
+      background: rgba(16, 27, 50, 0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 1.4rem;
+      margin: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.55rem;
+    }
+
+    p { margin: 0.55rem 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.9rem;
+    }
+
+    .card {
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1rem;
+    }
+
+    .highlight {
+      background: rgba(125,211,252,0.08);
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .quote-box {
+      background: rgba(167,139,250,0.09);
+      border: 1px solid rgba(167,139,250,0.28);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .risk-high { border-left: 5px solid var(--bad); }
+    .risk-mid { border-left: 5px solid var(--warn); }
+    .risk-low { border-left: 5px solid var(--good); }
+
+    .timeline {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      background: var(--panel2);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    ul { padding-left: 1.2rem; }
+    li { margin-bottom: 0.45rem; }
+
+    .quiz-box {
+      background: #0d1730;
+      border-radius: 16px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .question {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .answers {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+    }
+
+    button {
+      background: var(--panel2);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    button.correct { background: #14532d; }
+    button.incorrect { background: #7f1d1d; }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .image-card {
+      background: var(--panel2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-card .caption {
+      padding: 0.9rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .solution-card {
+      background: var(--panel2);
+      border-radius: 16px;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .best-choice {
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: none;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .references p {
+      margin: 0.65rem 0;
+      word-break: break-word;
+    }
+
+    .references a {
+      color: #facc15;
+      text-decoration: underline;
+    }
+
+    .references a:hover {
+      color: #fde047;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <div class="tag">Data Science • AI • Digital Marketing • Ethics</div>
+    <h1>Data Science, Artificial Intelligence, and Ethical Decision-Making in the Digital World</h1>
+    <p class="subtitle">This website explains what data science is, how AI is used in digital industries, why ethics matters in digital marketing, and how professionals should respond when technology creates risk.</p>
+
+    <div class="image-grid">
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80" alt="Data science and coding on a screen">
+        <div class="caption">Data science uses code, statistics, and AI to analyse information and solve real-world problems.</div>
+      </div>
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Marketing analytics dashboard and graphs">
+        <div class="caption">AI is widely used in digital marketing through targeting, prediction, and analytics.</div>
+      </div>
+      <div class="image-card">
+        <img src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1200&q=80" alt="Cybersecurity and privacy concept image">
+        <div class="caption">Ethics matters because privacy, security, and trust can be harmed when AI is used irresponsibly.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#profession">Data Science</a></li>
+    <li><a href="#ai">AI in Industry</a></li>
+    <li><a href="#dilemma">Ethical Dilemma</a></li>
+    <li><a href="#missing">What Is Missing</a></li>
+    <li><a href="#ethics">Code of Ethics</a></li>
+    <li><a href="#future">Future Impact</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="profession">
+  <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=800&q=60" style="width:500px;max-width:100%;border-radius:12px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;" alt="data science visual">
+  <h2>1. What Is Data Science?</h2>
+  <ul>
+    <li>Works with data to find patterns and insights</li>
+    <li>Uses programming, statistics, AI, and machine learning</li>
+    <li>Supports better decision-making in organisations</li>
+    <li>Used in healthcare, finance, business, government, and marketing</li>
+    <li>Often handles personal or sensitive information</li>
+  </ul>
+
+  <div class="mini-grid">
+    <div class="card">
+      <strong>For students</strong>
+      <ul>
+        <li>Builds problem-solving skills</li>
+        <li>Improves digital literacy</li>
+        <li>Shows how technology affects society</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>For professionals</strong>
+      <ul>
+        <li>Analyses large datasets</li>
+        <li>Builds predictive models</li>
+        <li>Supports evidence-based decisions</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>Responsibility</strong>
+      <ul>
+        <li>Protect privacy</li>
+        <li>Maintain security</li>
+        <li>Use data ethically</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Professional connection:</strong> As a data scientist, my role is not only to analyse information but also to make sure data-driven systems are accurate, safe, and ethically responsible. This means balancing technical performance with human rights, fairness, and public trust.
+  </div>
+</section>
+
+<section id="ai">
+  <h2>2. AI in Data Science</h2>
+  <ul>
+    <li>Automates data analysis</li>
+    <li>Finds hidden patterns</li>
+    <li>Predicts user behaviour</li>
+    <li>Powers recommendation and ad systems</li>
+    <li>Improves efficiency and speed</li>
+  </ul>
+
+  <div class="grid">
+    <div class="card">
+      <strong>76%</strong>
+      <p>use or plan to use AI tools</p>
+    </div>
+    <div class="card">
+      <strong>62%</strong>
+      <p>developers already use AI</p>
+    </div>
+    <div class="card">
+      <strong>55%</strong>
+      <p>reported productivity gain</p>
+    </div>
+    <div class="card">
+      <strong>75%</strong>
+      <p>marketers have adopted AI</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Evaluation:</strong> While AI improves efficiency, prediction, and large-scale analysis, it can also create risks such as bias, privacy invasion, and over-reliance on automated systems. Therefore, human oversight remains necessary to ensure responsible use in the data science profession.
+  </div>
+</section>
+
+<section id="dilemma">
+  <h2>3. Ethical Dilemma</h2>
+  <div class="quote-box">
+    <strong>Scenario:</strong> Your organisation develops an AI-driven digital marketing system that collects user data, analyses behaviour, and delivers targeted advertising. During testing, you discover that the system lacks clear user consent, collects excessive personal data, and may influence users in non-transparent ways. Despite these risks, management insists on releasing the system to maximise profit.
+  </div>
+
+  <div class="grid">
+    <div class="card risk-high">
+      <strong>Privacy</strong>
+      <p>The system collects and processes personal data without clear and informed user consent, increasing the risk of misuse.</p>
+    </div>
+    <div class="card risk-high">
+      <strong>Security</strong>
+      <p>Weak safeguards may expose sensitive user data to breaches, unauthorised access, or cyberattacks.</p>
+    </div>
+    <div class="card risk-mid">
+      <strong>Manipulation</strong>
+      <p>AI-driven targeting may influence user decisions unfairly, especially for vulnerable individuals.</p>
+    </div>
+    <div class="card risk-mid">
+      <strong>Trust</strong>
+      <p>Deploying such a system can damage public trust in both the organisation and digital technologies.</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Critical evaluation:</strong> This dilemma highlights a conflict between short-term business profit and ethical responsibility. Although releasing the system may benefit the company financially at first, ignoring ethical concerns may create wider harm for users and weaken trust over time.
+  </div>
+</section>
+
+<section>
+  <h2>4. Who Is Affected?</h2>
+  <div class="grid">
+    <div class="card">
+      <strong>Users</strong>
+      <p>Privacy loss and unfair targeting</p>
+    </div>
+    <div class="card">
+      <strong>Students</strong>
+      <p>More vulnerable to persuasion online</p>
+    </div>
+    <div class="card">
+      <strong>Professionals</strong>
+      <p>May lose integrity and trust</p>
+    </div>
+    <div class="card">
+      <strong>Companies</strong>
+      <p>Legal and reputation damage</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Stakeholder impact:</strong> Different stakeholders are affected in different ways. Users may experience privacy violations, manipulation, and loss of control over personal data. Companies may face legal penalties, public criticism, and financial loss. Professionals may damage their integrity if they knowingly support harmful systems.
+  </div>
+
+  <div class="quote-box">
+    <strong>Cause and effect:</strong> Privacy invasion can lead to loss of trust, loss of trust can lead to reputational damage, and reputational damage can lead to financial and legal consequences for the organisation.
+  </div>
+</section>
+
+<section id="missing">
+  <h2>5. What Is Missing in Technology?</h2>
+  <ul>
+    <li>Human judgment</li>
+    <li>Accountability</li>
+    <li>Transparency</li>
+    <li>Ethical reasoning</li>
+  </ul>
+  <div class="highlight">AI processes data well, but humans decide what is right.</div>
+</section>
+
+<section id="ethics">
+  <h2>6. Code of Ethics</h2>
+  <ul>
+    <li>Avoid harm</li>
+    <li>Respect privacy</li>
+    <li>Be honest and transparent</li>
+    <li>Consider societal impact</li>
+  </ul>
+  <div class="highlight">Follow ethics before profit.</div>
+  <div class="quote-box">
+    <strong>ACM Code idea:</strong> Professionals should avoid harm, protect privacy, and consider how their work affects people and society. According to ACM (2018), computing professionals must prioritise the public good, which directly applies to this situation. However, newer issues like AI bias and automated decision-making show why ethical guidelines must continue to evolve.
+  </div>
+</section>
+
+<section id="future">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60" style="width:500px;max-width:100%;border-radius:12px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;" alt="future AI">
+  <div class="image-grid">
+    <div class="image-card">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Future of AI and human collaboration">
+      <div class="caption">Future of AI and human collaboration</div>
+    </div>
+  </div>
+  <h2>7. Future Impact</h2>
+  <div class="grid">
+    <div class="card risk-low">
+      <strong>Useful</strong>
+      <ul>
+        <li>Faster work</li>
+        <li>Better predictions</li>
+        <li>Smarter systems</li>
+      </ul>
+    </div>
+    <div class="card risk-high">
+      <strong>Harmful</strong>
+      <ul>
+        <li>Privacy loss</li>
+        <li>Bias</li>
+        <li>Surveillance</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Evaluation of the future:</strong> AI can create major benefits in productivity and innovation, but these benefits are only sustainable when systems are transparent, fair, and properly monitored. Otherwise, the same technology may create large-scale social and ethical harm.
+  </div>
+</section>
+
+<section id="quiz">
+  <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60" style="width:500px;max-width:100%;border-radius:12px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;" alt="quiz visual">
+  <h2>8. Interactive Quiz</h2>
+  <div class="quiz-box">
+    <div class="question">
+      <strong>1. What is one major ethical risk of AI in digital marketing?</strong>
+      <div class="answers">
+        <button type="button" onclick="checkAnswer(false, this)">Faster data processing</button>
+        <button type="button" onclick="checkAnswer(true, this)">Privacy invasion through excessive tracking</button>
+        <button type="button" onclick="checkAnswer(false, this)">Improved screen brightness</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <strong>2. Why is data science useful?</strong>
+      <div class="answers">
+        <button type="button" onclick="checkAnswer(true, this)">It helps organisations make informed decisions using data</button>
+        <button type="button" onclick="checkAnswer(false, this)">It removes the need for ethics</button>
+        <button type="button" onclick="checkAnswer(false, this)">It is only useful in gaming</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <strong>3. What is still missing from AI systems?</strong>
+      <div class="answers">
+        <button type="button" onclick="checkAnswer(true, this)">Human judgment and moral responsibility</button>
+        <button type="button" onclick="checkAnswer(false, this)">The ability to store data</button>
+        <button type="button" onclick="checkAnswer(false, this)">The ability to process text</button>
+      </div>
+    </div>
+
+    <div class="question">
+      <strong>4. What should a professional do if an AI system is unsafe?</strong>
+      <div class="answers">
+        <button type="button" onclick="checkAnswer(false, this)">Launch it quickly to satisfy the manager</button>
+        <button type="button" onclick="checkAnswer(true, this)">Document the risks and refuse unsafe deployment</button>
+        <button type="button" onclick="checkAnswer(false, this)">Ignore the issue because AI created the output</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>9. T-Shape Opinion Matrix</h2>
+
+  <div class="card" style="background:#1e293b;color:#fff;padding:1.5rem;border-radius:20px;">
+    <h3 style="color:#7dd3fc;margin-top:0;">AI Ethical Decision Scenario</h3>
+    <p><strong>Scenario:</strong> An AI system in digital marketing collects user data and shows targeted ads. However, it may violate privacy and manipulate user decisions. Management still wants to release it.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;margin-top:1.5rem;">
+      <div style="background:#334155;padding:1rem;border:1px solid #475569;">
+        <strong style="color:#facc15;">Opposite View</strong>
+        <ul>
+          <li>AI improves efficiency</li>
+          <li>Faster business decisions</li>
+          <li>Maximises profit</li>
+        </ul>
+      </div>
+
+      <div style="background:#1e40af;padding:1rem;border:1px solid #3b82f6;">
+        <strong style="color:#facc15;">My View</strong>
+        <ul>
+          <li>Protect user privacy</li>
+          <li>Ensure fairness</li>
+          <li>Use ethical AI systems</li>
+        </ul>
+      </div>
+
+      <div style="background:#065f46;padding:1rem;border:1px solid #10b981;">
+        <strong style="color:#facc15;">Why Opposite is Risky</strong>
+        <ul>
+          <li>Privacy violations</li>
+          <li>Loss of trust</li>
+          <li>Legal risks</li>
+        </ul>
+      </div>
+
+      <div style="background:#78350f;padding:1rem;border:1px solid #f59e0b;">
+        <strong style="color:#facc15;">Possible Weakness</strong>
+        <ul>
+          <li>AI can be improved</li>
+          <li>Bias can be reduced</li>
+          <li>Data may be incomplete</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Evaluation:</strong> This matrix shows that AI can bring both benefits and risks. It also shows that my opinion must be tested critically, because responsible professional thinking requires considering both strengths and weaknesses before making a decision.
+  </div>
+</section>
+
+<section id="solutions">
+  <h2>10. Personal Solutions & Scenario Outcomes</h2>
+  <p>This section presents three possible actions and the outcome of each decision.</p>
+
+  <div class="solution-grid">
+    <div class="solution-card risk-high">
+      <strong>Solution 1: Launch the system with no changes</strong>
+      <ul>
+        <li>Follow the manager’s instructions</li>
+        <li>Release the AI system immediately</li>
+        <li>Do not raise further objections</li>
+      </ul>
+      <div class="timeline">
+        <div class="step"><strong>Step 1:</strong> Approve the unsafe system.</div>
+        <div class="step"><strong>Step 2:</strong> Allow the company to launch quickly.</div>
+        <div class="step"><strong>Step 3:</strong> Deal with problems only after users are affected.</div>
+      </div>
+      <p><strong>Outcome:</strong> Short-term profit may increase, but users face privacy violations, loss of trust, and possible harm. Legal and ethical consequences may follow.</p>
+    </div>
+
+    <div class="solution-card risk-mid">
+      <strong>Solution 2: Report the issue and suggest fixes</strong>
+      <ul>
+        <li>Inform management of the risks</li>
+        <li>Recommend clearer user consent</li>
+        <li>Reduce invasive data collection</li>
+        <li>Strengthen security and fairness checks</li>
+      </ul>
+      <div class="timeline">
+        <div class="step"><strong>Step 1:</strong> Present the ethical and technical risks.</div>
+        <div class="step"><strong>Step 2:</strong> Suggest concrete improvements.</div>
+        <div class="step"><strong>Step 3:</strong> Support a safer redesign before release.</div>
+      </div>
+      <p><strong>Outcome:</strong> Release may be delayed, but the system becomes safer and more transparent, improving trust and reducing long-term risks.</p>
+    </div>
+
+    <div class="solution-card best-choice risk-low">
+      <strong>Solution 3: Escalate and refuse unsafe deployment</strong>
+      <ul>
+        <li>Raise the issue to senior leadership or ethics officers</li>
+        <li>Refuse to approve the unsafe system</li>
+        <li>Protect users despite pressure</li>
+      </ul>
+      <div class="timeline">
+        <div class="step"><strong>Step 1:</strong> Document all risks formally.</div>
+        <div class="step"><strong>Step 2:</strong> Escalate beyond direct management.</div>
+        <div class="step"><strong>Step 3:</strong> Block deployment until ethical standards are met.</div>
+      </div>
+      <p><strong>Outcome:</strong> Although this may create short-term conflict in the workplace, it best protects users, upholds professional ethics, and prevents major long-term harm.</p>
+      <div class="highlight">
+        <strong>Best choice:</strong> Solution 3 prioritises ethics, safety, and long-term trust over short-term gain. Although it may be difficult in the short term, it is the most responsible and professionally justified response.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>11. Conclusion</h2>
+  <div class="quote-box">
+    Data science and AI can help the world, but only when professionals use them ethically, protect privacy, and make responsible decisions. This topic shows that technical skill alone is not enough; ethical judgment is equally important in the modern digital world.
+  </div>
+</section>
+
+<section id="references" class="references">
+  <h2>12. References</h2>
+  <p>Association for Computing Machinery. (2018). <em>ACM code of ethics and professional conduct</em>. <a href="https://www.acm.org/code-of-ethics" target="_blank">https://www.acm.org/code-of-ethics</a></p>
+  <p>GitHub. (2024, August 20). <em>Survey: The AI wave continues to grow on software development teams</em>. <a href="https://github.blog/news-insights/research/survey-ai-wave-grows/" target="_blank">https://github.blog/news-insights/research/survey-ai-wave-grows/</a></p>
+  <p>National Institute of Standards and Technology. (2022). <em>Secure software development framework (SSDF)</em>. <a href="https://csrc.nist.gov/pubs/sp/800/218/final" target="_blank">https://csrc.nist.gov/pubs/sp/800/218/final</a></p>
+  <p>Office of the Australian Information Commissioner. <em>Australian Privacy Principles</em>. <a href="https://www.oaic.gov.au/privacy/australian-privacy-principles" target="_blank">https://www.oaic.gov.au/privacy/australian-privacy-principles</a></p>
+  <p>Office of the Australian Information Commissioner. <em>Targeted online marketing</em>. <a href="https://www.oaic.gov.au/privacy/your-privacy-rights/social-media-and-online-privacy/targeted-online-marketing" target="_blank">https://www.oaic.gov.au/privacy/your-privacy-rights/social-media-and-online-privacy/targeted-online-marketing</a></p>
+  <p>Salesforce. (2026). <em>State of Marketing</em>. <a href="https://www.salesforce.com/news/stories/state-of-marketing-2026/" target="_blank">https://www.salesforce.com/news/stories/state-of-marketing-2026/</a></p>
+  <p>Stack Overflow. (2024). <em>Developer Survey</em>. <a href="https://survey.stackoverflow.co/2024/ai" target="_blank">https://survey.stackoverflow.co/2024/ai</a></p>
+</section>
+
+</main>
+
+<footer>
+  © 2026 AI Ethics in Data Science Presented by Minsun Shin using ChatGPT OpenAI | Educational Use
+</footer>
+
+<script>
+  function checkAnswer(correct, btn) {
+    const answers = btn.parentElement.querySelectorAll('button');
+    answers.forEach((b) => b.classList.remove('correct', 'incorrect'));
+    if (correct) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('incorrect');
+    }
+  }
+
+  console.assert(typeof checkAnswer === 'function', 'checkAnswer should be defined');
+  console.assert(document.querySelectorAll('#quiz .question').length === 4, 'Quiz should contain 4 questions');
+</script>
+
+</body>
+</html>
+
+
